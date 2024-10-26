@@ -3,33 +3,33 @@ title: \begin{title}\centering\vspace*{1cm}\rule{\textwidth}{0.05cm}\linebreak\v
 date: October 21, 2024
 ---
 
--  Server-side application VS Client-side application (Single Page Application - SPA)
--  How does frontend and backend communicate?
--  In analysis phase, the business team, PM, and sales team work together to gather requirements from the customer.
--  Who is the project manager, and what are the required teams?
-   -  Business Team (Business Consultant) - Adds customer requirements into requirements document (SRS Software Requirement Specification)
-   -  Development Team (Team Leader, Senior Developer, Junior Developer)
-   -  Testing Team (QA)
--  Development Models
-   -  Waterfall Model: each phase must be completed before the next phase begins
-   -  Agile Model: iterative and incremental development. Delivering small modules of the project in short time frames.
--  In Development Phase (Design, Development)
-   -  UX: Provide Site Map for website Navigation, Wireframe, Mockup, Prototype
-   -  UI: Uses wireframe and mockup to design the website
-   -  UI Development: Template Design, HTML, CSS, JavaScript (in case of Multi-Page Application)
-   -  Choosing framework in case of SPA (Angular, React, Vue)
--  UI/UX Designer should have a basic understanding of HTML, CSS, and JavaScript, frontend developer should have a basic understanding of UI/UX, and backend developer should have a basic understanding of frontend.
--  Angular is best coupled with DotNet
--  Backend
-   -  Programming
-      -  Programming Paradigm
-         -  Functional Programming
-         -  Event-Driven Programming
-         -  Object-Oriented Programming
-   -  Database
--  **Review Syntax Sugar part**
--  [Source DotNet](https://source.dot.net/)
--  Review the last part of the session
+- Server-side application VS Client-side application (Single Page Application - SPA)
+- How does frontend and backend communicate?
+- In analysis phase, the business team, PM, and sales team work together to gather requirements from the customer.
+- Who is the project manager, and what are the required teams?
+  - Business Team (Business Consultant) - Adds customer requirements into requirements document (SRS Software Requirement Specification)
+  - Development Team (Team Leader, Senior Developer, Junior Developer)
+  - Testing Team (QA)
+- Development Models
+  - Waterfall Model: each phase must be completed before the next phase begins
+  - Agile Model: iterative and incremental development. Delivering small modules of the project in short time frames.
+- In Development Phase (Design, Development)
+  - UX: Provide Site Map for website Navigation, Wireframe, Mockup, Prototype
+  - UI: Uses wireframe and mockup to design the website
+  - UI Development: Template Design, HTML, CSS, JavaScript (in case of Multi-Page Application)
+  - Choosing framework in case of SPA (Angular, React, Vue)
+- UI/UX Designer should have a basic understanding of HTML, CSS, and JavaScript, frontend developer should have a basic understanding of UI/UX, and backend developer should have a basic understanding of frontend.
+- Angular is best coupled with DotNet
+- Backend
+  - Programming
+    - Programming Paradigm
+      - Functional Programming
+      - Event-Driven Programming
+      - Object-Oriented Programming
+  - Database
+- **Review Syntax Sugar part**
+- [Source DotNet](https://source.dot.net/)
+- Review the last part of the session
 
 ---
 
@@ -37,17 +37,17 @@ date: October 21, 2024
 
 ## Video 1 (Web Application)
 
--  We connect to remote servers or devices via their IP (ex: remote desktop connection app on windows and ssh on linux)
--  HTTP request message
--  Server Side applications (Multi page web application)
--  Client Side applications (Single page web application)
--  In SPAs less number of requests are made to the server
--  Transpilation in SPAs is the process of converting JSX or TypeScript to JavaScript (???)
--  In Dynamic websites, We have a database which we get the content from
--  In server side applications backend developers get a template from frontend devs and converts it to a dynamic website that communicates with the database
--  Web applications can't use database directly they use an API
--  APIs are services and those services are actually functions that are implemented in one of the backend languages like C# or Java
--  To allow the frontend or mobile devs to use those functions we convert them into services (APIs)
+- We connect to remote servers or devices via their IP (ex: remote desktop connection app on windows and ssh on linux)
+- HTTP request message
+- Server Side applications (Multi page web application)
+- Client Side applications (Single page web application)
+- In SPAs less number of requests are made to the server
+- Transpilation in SPAs is the process of converting JSX or TypeScript to JavaScript (???)
+- In Dynamic websites, We have a database which we get the content from
+- In server side applications backend developers get a template from frontend devs and converts it to a dynamic website that communicates with the database
+- Web applications can't use database directly they use an API
+- APIs are services and those services are actually functions that are implemented in one of the backend languages like C# or Java
+- To allow the frontend or mobile devs to use those functions we convert them into services (APIs)
 
 ## Video 2 (Web Application)
 
@@ -64,7 +64,7 @@ date: October 21, 2024
       2. The SRS is shared with the development team and they can ask questions about it, if there is anything unclear.
       <!-- 2. Business Analyst: Analyzes the requirements and creates a document that is understandable by the development team -->
 4. Development Team: they have a development manager (software architect). The team can be divided into (frontend, backend) or (frontend, backend, mobile if there)
-   -  Development teams divisions like frontend or backend are also divided into multiple things like Juniors, Seniors, Specialists, and each team has a Technical lead. Dev Teams sub-teams depend on the project scale and when it should be finished
+   - Development teams divisions like frontend or backend are also divided into multiple things like Juniors, Seniors, Specialists, and each team has a Technical lead. Dev Teams sub-teams depend on the project scale and when it should be finished
 5. Testing team: testing team is divided into Quality Assurance (QA) and Quality Control (QC)
 6. Back then we used a development model called Waterfall Model to develope projects in which we finish each development phase then we start the other, this model used to consume a lot of time and make development a lot slower. In that model the business analyst writes the customer needs in requirements document then design phase then development then deployment
 7. Now we use Agile, in which each project is divided into a collection of services and modules, then we hand each module to the customer after a specified amount of time this is called a release and its defined by the project manager. Each release is divided into some iterations/sprints which would take from a week to a month. Each sprint has a sprint backlog which has the tasks that should be done. Jira is one of the Programs that is used in the agile model.
@@ -96,10 +96,10 @@ date: October 21, 2024
 ## Video 4 (What to do to work as a frontend or backend)
 
 1. To work as a frontend developer you need to know HTML, CSS, and JavaScript. You also need to know a frontend framework like Angular, React, or Vue. But as an advice you should know all of them, because you may work in a company that uses Angular, and you know React, so you will need to learn Angular to work in that company. To also be a good frontend developer you may need to know how to build your own framework, so you can understand how the frameworks work.
-   -  A frontend dev may have some knowledge about backend like using node.js, but it would be hard for him to know everything as frontend is a big field already.
+   - A frontend dev may have some knowledge about backend like using node.js, but it would be hard for him to know everything as frontend is a big field already.
 2. To work as a backend you need to know either Java spring or C# DotNet. Most of the companies don't hire junior backend Node.js developers, so if you are a junior backend developer you may need to learn Java spring or C# DotNet to get a job.
-   -  Best coupled frontend framework with DotNet is Angular. Most of the senior devs know Angular more than React because Angular appeared before React (Angular 1 appeared in 2010) and most of those people who learned Angular back then and started working are now senior devs.
-   -  A fullstack dotnet developer is a backend developer who have some knowledge about frontend.
+   - Best coupled frontend framework with DotNet is Angular. Most of the senior devs know Angular more than React because Angular appeared before React (Angular 1 appeared in 2010) and most of those people who learned Angular back then and started working are now senior devs.
+   - A fullstack dotnet developer is a backend developer who have some knowledge about frontend.
 3. Backend is responsible for making the website dynamic
 4. Dotnet Backend converts the template into a dynamic website using MVC or Razor Pages (in case of Multi-Page Application). In case of Single-Page Application, the backend team will need to create a web API that the frontend team will use to get the dynamic content from the database.
 5. Backend is divided into two parts:
@@ -110,7 +110,8 @@ date: October 21, 2024
    2. C# is more popular than all of other DotNet langs because it is more powerful and has more features than all of them, and more flexible as it can implement different paradigms like functional programming, event-driven programming, and object-oriented programming.
    3. In november of each year Microsoft releases a new version of C# with new features and improvements. In 2019 Microsoft released C# 7.3 at the beginning of the year, then in November of the same year they released C# 8.0. In 2020 they released C# 9.0, and in 2021 they released C# 10.0, and so on. Current latest version of C# is 12 which released in 2023.
    4. Example of the syntax improvements (syntax sugar) that comes with new versions of C# is the Date only and Time only types that were added in C# 10.0, before that we used to use DateTime type to store date and time, but now we can use Date only to store only the date, and Time only to store only the time. When that syntax sugar is compiled it will be converted into DateTime type, but it will be easier for the developer to use Date only and Time only types.
-   5. Another example is before C# 9.0 to print hello world we used to write this code:
+   5. In new versions microsoft also provides better performance.
+   6. Another example is before C# 9.0 to print hello world we used to write this code:
       ```{.csharp .numberLines}
       namespace HelloWorld {
          class Program {
@@ -125,9 +126,30 @@ date: October 21, 2024
       Console.WriteLine("Hello World");
       ```
 7. We say a language supports functional programming if it has functions as first-class citizens, allows functions to be passed as arguments to other functions (callback function), and allows functions to return other functions, and allows functions to be assigned to variables, This means that these languages treat functions like data. Example of these languages are JavaScript which implements functional programming, and C#
-   -  JS also has Object-Oriented Programming (OOP) but it's called prototype-based OOP
-   -  JS also has Event-Driven Programming which is a programming paradigm in which the flow of the program is determined by events such as user actions (mouse clicks, key presses).
-8. One of OOP principles is that any function should be defined inside a class, has an access modifier and a return type. In functional programming, you can define a function outside a class without an access modifier and a return type. Since C# supports both paradigms, you can define a function inside a class or outside a class as an anonymous function, you can also use other functional programming features withoout any problem.
+   - JS also has Object-Oriented Programming (OOP) but it's called prototype-based OOP
+   - JS also has Event-Driven Programming which is a programming paradigm in which the flow of the program is determined by events such as user actions (mouse clicks, key presses).
+8. One of OOP principles is that any function should be defined inside a class, has an access modifier and a return type. In functional programming, you can define a function outside a class without an access modifier and a return type. Since C# supports both paradigms, you can define a function inside a class or outside a class as an anonymous function, you can also use other functional programming features without any problem.
 9. OOP in C# will be discussed in like 5 sessions, and functional programming, event-driven programming, and other advanced topics will be discussed in also 5 sessions.
-10.   backend needs to know about database and programming
-      1. programming is a language like C# and a framework like DotNet
+10. backend needs to know about database and programming 1. programming is a language like C# and a framework like DotNet. What is framework? 2. What is dotnet platform? dotnet platform allows us to build different applications with different technologies, for example we can build a web application with dotnet core, a mobile application with xamarin, a desktop application with WPF, and a game with unity. Dotnet platform is a collection of libraries, tools, and languages that allows us to build different applications.
+    ![DotNet Platform](image/session-01/1729944236781.png){width=450px}
+11. From this image we know that we are not going to learn the whole DotNet platform but just ASP.NET for building web applications.
+12. We can't compare PHP with DotNet because PHP is a language and DotNet is a platform. We can compare PHP with ASP.NET (ASP = Active Server Pages)
+13. After 2014 Microsoft announced that they will make ASP.Net open source and cross-platform under the name ASP.Net _Core_, so we can build web applications with ASP.Net on Windows, Linux, and Mac, before that ASP.Net was only for Windows (Develope once, run everywhere). Also microsoft created a website to show the source code of DotNet, and it's called [source.dot.net](https://source.dot.net/). The first version of ASP.Net Core released in 2016, but Microsoft continued supporting ASP.Net Framework (the old closed source windows only version) until 2019, then they stopped supporting it and started supporting only ASP.Net Core, And in 2020 DotNet core was nearly finished and had most of the features that were in DotNet Framework, and at that time the old DotNet version was 4.8 so to avoid confusion they changed the name of DotNet Core to DotNet 5.0 the old versions of DotNet core before that were 1, 2, 3, and 4 was skipped.
+14. To start DotNet development, you need to download DotNet SDK (Software Development Kit).
+15. In ASP.Net core microsoft didn't add some features that were in ASP.Net Framework such as WebForms
+16. Odd versions of DotNet are supported for 1.5 years, and even versions are supported for 3 years. By saying support here we mean that if you face an issue and called Microsoft microsoft they will help you if you have a supported version and if not you should upgrade to a supported version first, also support means that Microsoft will release updates and patches for that version.
+17. To use new features of C# like C# 12 you need to use DotNet 8.0
+18. A lot of the old legacy code was written in ASP.Net Framework, which is refactored to ASP.Net Core. Also most developers prefer to use the even long-term supported versions of DotNet.
+19. To work in microsoft web development track, you should be able to develope server side applications using ASP.Net Core MVC or Razor pages, and provide a web service using Web API.
+
+```mermaid
+graph LR
+    A[DotNet platform] --> B[ASP.Net Core]
+    B --> C[MVC - Server Side Multi page Application]
+    B --> D[Razor Pages - MVVM - Server Side Multi page Application]
+    B --> E[Web API - Client Side Application]
+```
+
+Razor pages are based on architecture pattern called MVVM (Model-View-ViewModel) which is a variation of MVC (Model-View-Controller) pattern.
+
+MVC is more popular and has a better architecture
