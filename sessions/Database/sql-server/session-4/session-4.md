@@ -573,3 +573,708 @@ FROM Stud_Course SC INNER JOIN Student S
 ON S.St_Id = SC.St_Id
 WHERE S.St_Address = 'Cairo';
 ```
+
+# Function
+
+::: {.columns .ragged columngap=2.5em column-rule="0.0pt solid black"}
+
+Function is a DB object like table, view, or stored procedure. It's a set of SQL statements that perform a specific task, and when we want to perform that task we call the function.
+
+Functions prevents us from writing the same code multiple times, and makes the code more readable and maintainable.
+
+\columnbreak
+
+```{.mermaid height=300px caption="Function Types in SQL"}
+graph LR
+    A[Function Types in SQL]
+    A --> B[User Defined]
+    A --> C[Built-In]
+    B --> D["Scalar (Return one value)"]
+    B --> E["Table-Valued (Return Table)"]
+    %% B --> F[Aggregate Functions]
+    C --> G[Aggregate]
+    C --> H["Conversion (Casting)"]
+    C --> I[NULL]
+    C --> J[String]
+    C --> K[DateTime]
+    C --> L[Logical]
+    C --> M[Math]
+    C --> N[Ranking]
+    C --> O[System & Security]
+```
+
+:::
+
+## String Functions
+
+String functions are used to manipulate strings.
+
+### `FORMAT`
+
+Format function returns a value formatted with the specified format and optional culture
+
+It can be used to format date, time, DateTime, and strings.
+
+Syntax:
+
+```
+FORMAT( value , format [ , culture ] )
+```
+
+Examples:
+
+```{.sql .numberLines}
+-- `GETDATE()` is a function that returns the current date and time
+
+SELECT FORMAT(GETDATE(), 'dddd dd MMMM yyyy') -- Sunday 08 December 2024
+SELECT FORMAT(GETDATE(), 'ddd dd MMMM yyyy') -- Sun 08 December 2024
+SELECT FORMAT(GETDATE(), 'd') -- 12/8/2024
+SELECT FORMAT(GETDATE(), 'dd') -- 08
+SELECT FORMAT(GETDATE(), 'ddd') -- Sun
+SELECT FORMAT(GETDATE(), 'ddd', 'ar') -- Day name in Arabic
+SELECT FORMAT(GETDATE(), 'ddd', 'fr') -- Day name in French
+SELECT FORMAT(GETDATE(), 'MMMM', 'ar') -- Month name in Arabic
+SELECT FORMAT(GETDATE(), 'HH') -- 24 hours
+SELECT FORMAT(GETDATE(), 'hh') -- 12 hours
+SELECT FORMAT(GETDATE(), 'mm') -- minutes
+SELECT FORMAT(GETDATE(), 'ss') -- seconds
+SELECT FORMAT(GETDATE(), 'hh:mm') -- 12:00
+SELECT FORMAT(GETDATE(), 'hh:mm:ss') -- 12:00:00
+SELECT FORMAT(GETDATE(), 'hh:mm tt') -- 12:00 AM
+SELECT FORMAT(123456789, '###,###,###') -- 123,456,789
+SELECT FORMAT(CAST('2022-12-31' AS DATE), N'dd/MMM/yyyy') -- 31/Dec/2022
+SELECT FORMAT(CAST('22:30' AS TIME), N'hh\:mm') -- 22:30 (Notice the escape character on the colon)
+SELECT FORMAT(SYSDATETIME(), 'hh:mm tt') -- 12:00 AM
+SELECT FORMAT(SYSDATETIME(), 'HH:mm:ss tt') -- 00:00:00 AM
+```
+
+Options used to format the date:
+
+- `d`: Short date pattern `12/8/2024`
+- `D`: Long date pattern `Sunday, December 8, 2024`
+- `f`: Full date/time pattern (without seconds) `Sunday, December 8, 2024 12:00 AM`
+- `F`: Full date/time pattern (with seconds) `Sunday, December 8, 2024 12:00:00 AM`
+- `g`: General date/time pattern `12/8/2024 12:00 AM`
+- `G`: General date/time pattern `12/8/2024 12:00:00 AM`
+- `M`: Month day pattern `December 8`
+- `t`: Short time pattern `12:00 AM`
+- `T`: Long time pattern `12:00:00 AM`
+- `Y`: Year month pattern `December, 2024`
+- `yyyy`: Year `2024`
+- `yy`: Year `24`
+- `MM`: Month `12`
+- `MMM`: Month `Dec`
+- `MMMM`: Month `December`
+- `dd`: Day `08`
+- `ddd`: Day `Sun`
+- `dddd`: Day `Sunday`
+- `HH`: 24 hours `00`
+- `hh`: 12 hours `12`
+- `mm`: Minutes `00`
+- `ss`: Seconds `00`
+- `tt`: AM/PM `AM`
+<!-- - `R`: RFC1123 pattern `Sun, 08 Dec 2024 00:00:00 GMT`
+- `s`: Sortable date/time pattern `2024-12-08T00:00:00` -->
+
+### `UPPER`, `LOWER`, and `LEN`
+
+`UPPER` function converts a string to uppercase.
+
+`LOWER` function converts a string to lowercase.
+
+`LEN` function returns the length of the string.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT UPPER('Hello') -- HELLO
+SELECT LOWER('Hello') -- hello
+SELECT LEN('Hello') -- 5
+
+SELECT UPPER(St_Fname) 'First Name'
+FROM Student;
+```
+
+### `SUBSTRING`, `ASCII`,and `CHAR`
+
+SQL is 1-based index language. `SUBSTRING` function returns part of a string.
+
+`ASCII` function returns the ASCII value of the first character of the string.
+
+`CHAR` function returns the character based on the ASCII value.
+
+Syntax:
+
+```
+SUBSTRING( string, start, length )
+ASCII( string )
+CHAR( ASCII_value )
+```
+
+Examples:
+
+```{.sql .numberLines}
+SELECT SUBSTRING('Hello', 2, 3) -- ell
+SELECT SUBSTRING('Hello', 2, 100) -- ello
+SELECT SUBSTRING('Hello', 2, LEN('Hello')) -- ello
+
+SELECT ASCII('A') -- 65
+SELECT ASCII('Ahmed') -- 65
+
+SELECT CHAR(65) -- A
+```
+
+### `LEFT`, and `RIGHT`
+
+`LEFT` function returns the left part of a string.
+
+`RIGHT` function returns the right part of a string.
+
+Syntax:
+
+```
+LEFT( string, length )
+RIGHT( string, length )
+```
+
+Examples:
+
+```{.sql .numberLines}
+SELECT LEFT('Hello', 2) -- He
+SELECT RIGHT('Hello', 2) -- lo
+```
+
+### `LTRIM`, `RTRIM`, and `TRIM`
+
+`LTRIM` function removes spaces from the left side of a string.
+
+`RTRIM` function removes spaces from the right side of a string.
+
+`TRIM` function removes spaces from both sides of a string.
+
+Examples:
+
+```{.sql .numberLines}
+-- Single quotes in comments are just to show the result,
+-- they are not part of the result
+SELECT LTRIM('  Hello  ') -- 'Hello  '
+SELECT RTRIM('  Hello  ') -- '  Hello'
+SELECT TRIM('  Hello  ') -- 'Hello'
+```
+
+### `REPLACE`, and `REVERSE`
+
+`REPLACE` function replaces a substring with another substring.
+
+`REVERSE` function reverses a string.
+
+Syntax:
+
+```
+REPLACE( string, old_substring, new_substring )
+REVERSE( string )
+```
+
+Examples:
+
+```{.sql .numberLines}
+SELECT REPLACE('Hello World', 'World', 'Ahmed') -- Hello Ahmed
+SELECT REVERSE('Hello') -- olleH
+```
+
+### `CONCAT`, and `CONCAT_WS`
+
+`CONCAT` function concatenates two or more strings.
+
+`CONCAT_WS` function concatenates two or more strings with a separator.
+
+`CONCAT`, and `CONCAT_WS` handle `NULL` values by converting them into an empty string.
+
+Syntax:
+
+```
+CONCAT( string1, string2 [, string3, ...] )
+CONCAT_WS( separator, string1, string2 [, string3, ...] )
+```
+
+Examples:
+
+```{.sql .numberLines}
+SELECT CONCAT('Hello', ' ', 'World') -- Hello World
+SELECT CONCAT('Hello', '-', 'World') -- Hello-World
+
+SELECT CONCAT_WS(' ', 'Hello', 'SQL', 'and', 'World') -- Hello SQL and World
+SELECT CONCAT_WS('-', 'Hello', 'SQL', 'and', 'World') -- Hello-SQL-and-World
+
+SELECT CONCAT_WS(' ', St_Fname, St_Lname) -- Student Full Name
+
+SELECT CONCAT_WS(' ', St_Fname, St_Lname) AS 'Full Name'
+FROM Student
+```
+
+## Aggregate Functions
+
+Aggregate functions are called scaler functions as they return a single value.
+
+### `COUNT`
+
+`COUNT` function returns the number of rows in a table.
+
+Syntax:
+
+```
+COUNT( * )
+COUNT( column_name )
+```
+
+> _Note: If the row has a `NULL` value in the column, it **will not be counted**_
+>
+> _That is why if you want to count the number of rows you should use `COUNT(_)`, or use `COUNT`with a`NOT NULL` column.\_
+
+Examples:
+
+```{.sql .numberLines}
+SELECT COUNT(*)
+FROM Student;
+```
+
+### `SUM`
+
+`SUM` function returns the sum of the values in a column.
+
+Syntax:
+
+```
+SUM( column_name )
+```
+
+The column has to be of a numeric type. If the column has a `NULL` value, it will be ignored.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT SUM(Grade) 'Total Grade'
+FROM Stud_Course;
+```
+
+### `AVG`
+
+`AVG` function returns the average of the values in a column.
+
+Syntax:
+
+```
+AVG( column_name )
+```
+
+The column has to be of a numeric type. If the column has a `NULL` value, it will be ignored.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT AVG(Grade) 'Average Grade'
+FROM Stud_Course;
+
+-- You can also use `SUM` and `COUNT` to get the average
+-- Note: this gets the average of the non-NULL values only, just like `AVG`
+-- if you want to include the NULL values you should use `COUNT(*)`
+SELECT SUM(Grade) / COUNT(Grade) 'Average Grade'
+FROM Stud_Course;
+```
+
+### `MIN`, and `MAX`
+
+`MIN` function returns the minimum value in a column.
+
+`MAX` function returns the maximum value in a column.
+
+If you pass a string column to `MIN` or `MAX` it will give you the minimum or maximum value based on the ASCII values.
+
+`NULL` values are ignored in both functions.
+
+If all values in the column are `NULL`, the result will be `NULL`, but it doesn't mean that the column has a `NULL` value, it means that there is no minimum or maximum value.
+
+Syntax:
+
+```
+MIN( column_name )
+MAX( column_name )
+```
+
+Examples:
+
+```{.sql .numberLines}
+SELECT MIN(Grade) 'Lowest Grade'
+FROM Stud_Course;
+
+SELECT MAX(Grade) 'Highest Grade'
+FROM Stud_Course;
+```
+
+There is more aggregate functions you can see them in the SQL Server documentation.
+
+<!-- Partition part in the video -->
+
+## `NULL` Functions
+
+`NULL` functions is not a category in MS SQL Server Docs, the functions we will discuss here are system functions that deal with `NULL` values.
+
+### `ISNULL`
+
+`ISNULL` function returns the first value if it's not `NULL`, otherwise it returns the second value.
+
+The replace value should be of the same type as the first value.
+
+Syntax:
+
+```
+ISNULL( value, replacement_value )
+```
+
+Examples:
+
+```{.sql .numberLines}
+SELECT ISNULL(NULL, 'No Value') 'Value' -- No Value
+SELECT ISNULL('Hello', 'No Value') 'Value' -- Hello
+
+SELECT ISNULL(St_Fname, 'No First Name') 'First Name'
+FROM Student;
+
+-- If student has no first name, return the last name
+-- even if the last name is NULL
+SELECT ISNULL(St_Fname, St_Lname) 'Name'
+FROM Student;
+
+-- If student has no first name, return the last name
+-- if the last name is NULL return 'No Name'
+SELECT ISNULL(St_Fname, ISNULL(St_Lname, 'No Name')) 'Name'
+FROM Student;
+```
+
+### `COALESCE`
+
+`COALESCE` function returns the first non-`NULL` value in the list.
+
+Syntax:
+
+```
+COALESCE( value1, value2, ... )
+```
+
+Examples:
+
+```{.sql .numberLines}
+SELECT COALESCE(NULL, 'No Value', 'Hello') -- No Value
+SELECT COALESCE(NULL, NULL, 'Hello') -- Hello
+
+-- If student's first name is NULL return last name
+-- if the last name is NULL return 'No Name'
+SELECT COALESCE(St_Fname, St_Lname, 'No Name')
+FROM Student;
+-- The statement above is equivalent to:
+SELECT ISNULL(St_Fname, ISNULL(St_Lname, 'No Name'))
+```
+
+<!-- prettier-ignore-start -->
+
+\begin{box4}{\textbf{Note:}}{violet}
+If you want to concatenate two columns and one of them is \texttt{NULL}, it will return \texttt{NULL}, even if the other column has a value.
+
+To avoid this you can use \texttt{ISNULL} or \texttt{COALESCE} functions.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\KeywordTok{SELECT}\NormalTok{ St\_Fname }\OperatorTok{+} \StringTok{\textquotesingle{} \textquotesingle{}} \OperatorTok{+}\NormalTok{ St\_Lname}
+\KeywordTok{FROM}\NormalTok{ Student;}
+
+\CommentTok{{-}{-} Use ISNULL to replace NULL values with an empty string}
+\KeywordTok{SELECT}\NormalTok{ ISNULL(St\_Fname, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{) }\OperatorTok{+} \StringTok{\textquotesingle{} \textquotesingle{}} \OperatorTok{+}\NormalTok{ ISNULL(St\_Lname, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}
+\KeywordTok{FROM}\NormalTok{ Student;}
+\end{Highlighting}
+\end{Shaded}
+\end{box4}
+
+<!-- prettier-ignore-end -->
+
+## Casting Functions
+
+Casting functions are used to convert a value from one data type to another.
+
+### `CONVERT`
+
+`CONVERT` function converts a value from one data type to another.
+
+Syntax:
+
+```
+CONVERT( data_type, value [, style ] )
+```
+
+`data_type` is the target data type.
+
+`value` is the value you want to convert.
+
+`style` is an optional parameter that specifies the format of the result.
+
+Examples:
+
+<!--
+```{.sql .numberLines}
+SELECT CONVERT(VARCHAR, 123) -- 123
+SELECT CONVERT(INT, '123') -- 123
+SELECT CONVERT(DATE, '2024-12-08') -- 2024-12-08
+SELECT CONVERT(DATETIME, '2024-12-08 12:00:00') -- 2024-12-08 12:00:00
+SELECT CONVERT(TIME, '12:00:00') -- 12:00:00
+SELECT CONVERT(DECIMAL, 123.456) -- 123.456
+SELECT CONVERT(DECIMAL, 123.456, 0) -- 123
+```
+-->
+
+```{.sql .numberLines}
+SELECT St_Fname + ' ' + CONVERT(VARCHAR(max),St_Age)
+FROM Student;
+
+-- To handle NULL values
+SELECT ISNULL(St_Fname, 'No Name') + ' ' + CONVERT(VARCHAR(max),ISNULL(St_Age, 0))
+FROM Student
+```
+
+### `CAST`
+
+`CAST` function converts a value from one data type to another.
+
+Syntax:
+
+```
+CAST( value AS data_type )
+```
+
+`value` is the value you want to convert.
+
+`data_type` is the target data type.
+
+Examples:
+
+<!-- SELECT CAST(123 AS VARCHAR) -- 123
+SELECT CAST('123' AS INT) -- 123
+SELECT CAST('2024-12-08' AS DATE) -- 2024-12-08
+SELECT CAST('2024-12-08 12:00:00' AS DATETIME) -- 2024-12-08 12:00:00
+SELECT CAST('12:00:00' AS TIME) -- 12:00:00
+SELECT CAST(123.456 AS DECIMAL) -- 123.456
+SELECT CAST(123.456 AS DECIMAL(18, 0)) -- 123 -->
+
+```{.sql .numberLines}
+SELECT St_lname + ' ' + CAST(St_Age AS VARCHAR(MAX))
+FROM Student;
+```
+
+Both `CAST` and `CONVERT` functions do the same thing, with just a different syntax.
+
+The only difference is when converting from date to string, `CONVERT` function has more options to format the date, but anyway it's better to use `FORMAT` function in this case.
+
+```{.sql .numberLines}
+-- Declare and set the date variable
+DECLARE @Today DATE = '2024-12-18';
+
+-- Using CAST
+SELECT CAST(@Today AS VARCHAR(MAX));  -- 2024-12-18
+
+-- Using CONVERT with different style numbers
+SELECT CONVERT(VARCHAR(MAX), @Today, 101);  -- 12/18/2024
+SELECT CONVERT(VARCHAR(MAX), @Today, 102);  -- 24.12.18
+SELECT CONVERT(VARCHAR(MAX), @Today, 110);  -- 12-18-24
+SELECT CONVERT(VARCHAR(MAX), @Today, 111);  -- 24/12/18
+```
+
+### `PARSE`
+
+`PARSE` function only converts a string to date/time and number types. For general type conversion use `CAST` or `CONVERT`.
+
+Syntax:
+
+```
+PARSE( string_value AS data_type [ USING culture ] )
+```
+
+`string_value` is the value you want to convert.
+
+`data_type` is the target data type.
+
+`culture` is an optional parameter that specifies the culture of the result.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT PARSE('2024-12-08' AS DATE) -- 2024-12-08
+
+SELECT PARSE('123' AS INT) -- 123
+
+SELECT PARSE('12/08/2024' AS DATE USING 'en-US') -- 2024-12-08
+
+
+-- Usage with money:
+SELECT PARSE('€345,98' AS MONEY USING 'de-DE'); -- 345,98
+SELECT PARSE('345,98' AS MONEY USING 'de-DE'); -- 345,98
+SELECT FORMAT(
+    PARSE('345,98' AS MONEY USING 'de-DE'),
+    'C',
+    'de-DE'
+); -- 345,98 €
+```
+
+### `TRY_PARSE`, `TRY_CONVERT`, and `TRY_CAST`
+
+`TRY_PARSE`, `TRY_CONVERT`, and `TRY_CAST` are similar to `PARSE`, `CONVERT`, and `CAST` functions, but they return `NULL` if the conversion fails instead of throwing an error.
+
+```{.sql .numberLines}
+SELECT PARSE('Mohamed Ahmed' AS DATE) -- Error
+SELECT TRY_PARSE('Mohamed Ahmed' AS DATE) -- NULL
+
+SELECT CAST('Mohamed Ahmed' AS DATE) -- Error
+SELECT TRY_CAST('Mohamed Ahmed' AS DATE) -- NULL
+
+SELECT CONVERT(DATE, 'Mohamed Ahmed') -- Error
+SELECT TRY_CONVERT(DATE, 'Mohamed Ahmed') -- NULL
+```
+
+## DateTime Functions
+
+### `GETDATE`
+
+`GETDATE` function returns the current date and time.
+
+```{.sql .numberLines}
+SELECT GETDATE(); // 2024-12-15 17:26:10.550
+// The time is 5:26 PM and 10.550 seconds
+```
+
+### `GETUTCDATE`
+
+`GETUTCDATE` function returns the current UTC date and time.
+
+```{.sql .numberLines}
+SELECT GETUTCDATE(); // 2024-12-15 15:26:10.550
+```
+
+Since Egypt is in the `+2` timezone, the time in UTC is 2 hours less than the local time.
+
+### `Day`, `Month`, `Year`
+
+`Day`, `Month`, and `Year` functions return the day, month, and year of a date.
+
+```{.sql .numberLines}
+SELECT DAY(GETDATE()) -- 15
+SELECT MONTH(GETDATE()) -- 12
+SELECT YEAR(GETDATE()) -- 2024
+```
+
+### `DATEPART`
+
+`DATEPART` function returns the specified part of a date.
+
+Syntax:
+
+```
+DATEPART( datepart, date )
+```
+
+`datepart` is the part you want to get.
+
+`date` is the date you want to get the part from.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT DATEPART(DAY, GETDATE()) -- 15
+SELECT DAY(GETDATE()) -- 15
+
+SELECT DATEPART(MONTH, GETDATE()) -- 12
+SELECT MONTH(GETDATE()) -- 12
+
+SELECT DATEPART(YEAR, GETDATE()) -- 2024
+SELECT YEAR(GETDATE()) -- 2024
+
+SELECT DATEPART(QUARTER, GETDATE()) -- 4 -> We are in the 4th quarter
+SELECT DATEPART(QQ, GETDATE()) -- 4 -> QQ is Quarter abbreviation
+
+SELECT DATEPART(WEEK, GETDATE()) -- 51
+
+SELECT DATEPART(HOUR, GETDATE()) -- 17
+```
+
+Each one of `HOUR`, `DAY`, `MONTH`, `YEAR`, and `QUARTER` has an abbreviation. You can see all abbreviations [here](https://learn.microsoft.com/en-us/sql/t-sql/functions/datepart-transact-sql#arguments).
+
+### `DATENAME`
+
+`DATENAME` is similar to `DATEPART` but it returns the name of the part. The difference appears with `MONTH`, as `DATEPART` returns the number of the month, while `DATENAME` returns the name of the month.
+
+Syntax:
+
+```
+DATENAME( datepart, date )
+```
+
+`datepart` is the part you want to get.
+
+`date` is the date you want to get the part from.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT DATENAME(MONTH, GETDATE()) -- December
+```
+
+### `ISDATE`
+
+`ISDATE` returns whether the value is a valid date. It returns `1` if it's a valid date, otherwise it returns `0`.
+
+It can be used in `IF` statements to check if the value is a valid date.
+
+```{.sql .numberLines}
+IF ISDATE('2024-12-15') = 1
+    SELECT 'Valid Date';
+ELSE
+    SELECT 'Invalid Date';
+```
+
+### `EOMONTH` (End Of Month)
+
+`EOMONTH` returns the last day of the month that contains the specified date.
+
+Syntax:
+
+```
+EOMONTH( date )
+```
+
+`date` is the date you want to get the last day of its month.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT EOMONTH('2024-12-15') -- 2024-12-31
+```
+
+### `DATEDIFF` (Date Difference)
+
+`DATEDIFF` returns the difference between two dates.
+
+Syntax:
+
+```
+DATEDIFF( datepart, start_date, end_date )
+```
+
+`datepart` is the part you want to get the difference in.
+
+`start_date` is the start date.
+
+`end_date` is the end date.
+
+Examples:
+
+```{.sql .numberLines}
+SELECT DATEDIFF(DAY, '2024-12-15', '2024-12-31') -- 16
+SELECT DATEDIFF(MONTH, '2024-10-15', '2024-12-31') -- 2
+SELECT DATEDIFF(YEAR, '2025-12-15', '2025-12-31') -- 0
+```
