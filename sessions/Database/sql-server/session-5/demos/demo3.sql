@@ -2,8 +2,8 @@
 USE ITI;
 
 
--- TODO search if there is a reverse function in SQL or not
--- see: tg record + ../draft/image.png, ../draft/note.excalidraw
+-- TODO: search if there is a reverse function in SQL or not
+-- TODO: see telegram record + ../draft/image.png, ../draft/note.excalidraw
 /* 
 The use of NTile, its parameter (n tiles), how it works, and how does it handles a number of rows  that is not divisible by the number of tiles. 
 
@@ -169,7 +169,7 @@ Union family operators can reduce requests to the database, because we can get t
 For example suppose you have two databases each one in a different location, and you want to get the data from both databases, you can use the `UNION` operator to get the data from both databases in one request.
 
 
-UNION removes the duplicates, while UNION ALL does not remove the duplicates.
+UNION ignores the duplicates (only returns one copy of the duplicate rows), while UNION ALL does not ignore the duplicates.
 
 add the example in ./images/image-2.png into the pdf and explain it (Osama was removed).
 
@@ -224,7 +224,7 @@ Select * from Student Where St_Address in ('Cairo', 'Alex')
 We can use union family operators when we have two tables with no relation between them and we want to get the data from both tables in one result set (for example two different tables in different databases or different schemas).
 
 
-for example if we have two different student tables student1 and student2 and we want to get the students from both tables, we can use UNION to get the students from both tables in one result set.
+for example if we have two different student tables student1 and student2 with no relation and we want to get the students from both tables, we can use UNION to get the students from both tables in one result set.
 
 Select first_name from Student1
 union
@@ -349,7 +349,7 @@ So far we have talked about CREATE, ALTER, DROP. Now lets talk about SELECT INTO
 
 SELECT INTO is used to create a new table based on the result of a select statement. Each table consists of structure which is (Columns, Keys, Constraints, Indexes, Triggers, etc) and data which is the rows.
 
-SELECT INTO copies data and only (columns, constraints) from the structure of the source table and creates a new table with the same structure and data of the source table.
+`SELECT INTO` copies data and only (columns, constraints) from a source table to a new table.
 
 SELECT
  * INTO table_name

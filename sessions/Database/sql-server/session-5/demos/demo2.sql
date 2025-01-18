@@ -22,7 +22,7 @@ https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-arch
 https://www.geeksforgeeks.org/sql-query-processing/
 
 ==================================================
-ADD WHEN TO USE EACH OF THE EXPLAINED SQL CLAUSES
+TODO: ADD WHEN TO USE EACH OF THE EXPLAINED SQL CLAUSES
 INTO THE MARKDOWN FILE IN A HIGHLIGHTED BOX
 SEARCH WITH `when` and `if` WORDS IN THE FILE
 TO FIND THOSE SECTIONS
@@ -400,8 +400,7 @@ the difference between the three functions is in how they handle rows with the s
 
 choosing which function to use depends on the business requirements
 
-../images/image-1.png
-
+../images/image.png
 
  */
 SELECT
@@ -476,7 +475,7 @@ ORDER BY
 /* 
 We can also use `RANK`
 
-Here instead of using top we are using ROW_NUMBER in a subquery to get the students with the highest age 
+Here instead of using `TOP` we are using `ROW_NUMBER` in a subquery to get the students with the highest age 
 then we are selecting the students with rank 1 and 2 from the subquery
 
 IMPORTANT: We have to give the table outputted by the subquery an alias name, We can't apply the `ROW_NUMBER` function directly in the where clause without using a subquery

@@ -98,7 +98,6 @@ GROUP BY
   St_Id;
 
 
-
 -- You also can't group by *. For this to work you need to have at least
 -- two rows with the same values in all columns which shouldn't happen from the 
 -- beginning since the primary key is unique
@@ -229,7 +228,6 @@ FROM
 -- that condition works on the groups created by the GROUP BY clause
 -- or on the whole table if there is no GROUP BY clause and we are
 -- using an aggregate function in the SELECT clause
-
 SELECT
   Dept_Id,
   SUM(Salary) AS 'SumOfSalaries'
@@ -298,5 +296,5 @@ FROM
 WHERE
   Supr.St_Id = Stud.St_super
 GROUP BY
-  Supr.St_Fname,
-  Supr.St_Id;
+  Supr.St_Id,
+  Supr.St_Fname;
